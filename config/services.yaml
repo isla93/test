@@ -1,0 +1,51 @@
+# This file is the entry point to configure your own services.
+# Files in the packages/ subdirectory configure your dependencies.
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
+parameters:
+    container.dumper.inline_factories: true
+
+    rtmp_thumbnails_base_url: '%env(resolve:RTMP_THUMBNAILS_BASE_URL)%'
+    rtmp_control_module_base_url: '%env(resolve:RTMP_CONTROL_MODULE_BASE_URL)%'
+    rtmp_http_flv_base_url: '%env(resolve:RTMP_HTTP_FLV_BASE_URL)%'
+
+    mercure_topics:
+        - 'api/streams/{id}'
+
+services:
+    # default configuration for services in *this* file
+    _defaults:
+        autowire: true      # Automatically injects dependencies in your services.
+        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+        bind:
+            $rtmpThumbnailsBaseUrl: '%rtmp_thumbnails_base_url%'
+            $rtmpControlModuleBaseUrl: '%rtmp_control_module_base_url%'
+            $rtmpHttpFlvBaseUrl: '%rtmp_http_flv_base_url%'
+            $mercureTopics: '%mercure_topics%'
+
+    # makes classes in src/ available to be used as services
+    # this creates a service per class whose id is the fully-qualified class name
+    App\:
+        resource: '../src/'
+        exclude:
+            - '../src/DependencyInjection/'
+            - '../src/Entity/'
+            - '../src/Kernel.php'
+            - '../src/Tests/'
+
+    # controllers are imported separately to make sure services can be injected
+    # as action arguments even if you don't extend any base controller class
+    App\Controller\:
+        resource: '../src/Controller/'
+        tags: ['controller.service_arguments']
+
+    # add more service definitions when explicit configuration is needed
+    # please note that last definitions always *replace* previous ones
+    App\EventListener\StreamSlugAndKeyGenerator:
+        tags:
+            - name: 'doctrine.orm.entity_listener'
+              event: 'prePersist'
+              entity: 'App\Entity\Stream'
+              lazy: true
+
