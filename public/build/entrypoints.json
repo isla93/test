@@ -1,0 +1,30 @@
+{
+  "entrypoints": {
+    "admin": {
+      "js": [
+        "/build/228.7d7831be.js",
+        "/build/admin.8e5fea79.js"
+      ],
+      "css": [
+        "/build/admin.005cd482.css"
+      ]
+    },
+    "publicPlayer": {
+      "js": [
+        "/build/706.c151997a.js",
+        "/build/publicPlayer.21401112.js"
+      ],
+      "css": [
+        "/build/publicPlayer.005cd482.css"
+      ]
+    }
+  },
+  "integrity": {
+    "/build/228.7d7831be.js": "sha384-Hf9T7Wq9Kz4kkkNLAyeZOtYpxeqF/5gTI+Mm+8kfd0rP2Nyx5IMjvLL7O1nTiFA6",
+    "/build/admin.8e5fea79.js": "sha384-HaKAPURHA9vS2KBcW/WksZjX0mDMC19bUxKW3Op5om0GWGnPFEnjWQGe0ydajxqm",
+    "/build/admin.005cd482.css": "sha384-ccPmr5jRcEwRANDg5i4IhEaAcrqh2r17MdZnv6XWi9qFxQmgu8W2YFy4kDumxruL",
+    "/build/706.c151997a.js": "sha384-Or+ajWi6hT+sXwqmI9iHpeS2iY0mg42dcf5POGNwSvs7r2lBx4Y2iu7IVRa8oDQD",
+    "/build/publicPlayer.21401112.js": "sha384-DniVwhQ+MaBi+nSG1Nno41vxvnqO6k0/h3sZS5AvRmz1CW7KEympWzrEpofTmb3s",
+    "/build/publicPlayer.005cd482.css": "sha384-ccPmr5jRcEwRANDg5i4IhEaAcrqh2r17MdZnv6XWi9qFxQmgu8W2YFy4kDumxruL"
+  }
+}
